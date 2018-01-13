@@ -1,13 +1,18 @@
 <template>
-  <PlayerEntry/>
+  <div>
+    <PlayerEntry/>
+    <single-player-card />
+  </div>
 </template>
 
 <script>
-import PlayerEntry from './components/PlayerEntry';
+import PlayerEntry from "./components/PlayerEntry";
+import SinglePlayerCard from "./components/SinglePlayerCard";
 
 export default {
   components: {
-    PlayerEntry
+    PlayerEntry,
+    SinglePlayerCard
   }
-}
+};
 </script>
