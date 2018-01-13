@@ -31,7 +31,7 @@ export default {
   },
   components: {
     PlayerEntry,
-    Lobby
+    Lobby,
     SinglePlayerCard
   }
 };
