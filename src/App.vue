@@ -3,6 +3,7 @@
     <PlayerEntry :currentPlayer="currentPlayer" @playerJoined="addNewPlayer" v-if="step == 0"/>
     <Lobby :currentPlayer="currentPlayer" :players="players" v-else-if="step == 1"/>
     <single-player-card />
+    <PendingState />
   </div>
 </template>
 
