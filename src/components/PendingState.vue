@@ -47,22 +47,17 @@ export default {
   flex-direction: column;
   align-items: stretch;
 }
-.PendingState > * {
-  flex: 1 100%;
-}
 .PlayerInformation {
   display: flex;
-  flex-wrap: row wrap;
+  flex-wrap: wrap;
 }
 .Instructions {
   background: blue;
-
   flex: 3 500px;
-  /* min-width: 75%; */
 }
 .SinglePlayerCard {
-  background: red;
-  flex: 1 100px;
+  background: green;
+  flex: 1 0;
 }
 .Time {
     align-self: center;
@@ -70,5 +65,4 @@ export default {
 .Team {
     text-align: center;
 }
-
 </style>
