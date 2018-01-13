@@ -9,7 +9,7 @@
 
 <script>
 export default {
-    // player: {
+    // player: {,
     //     imgUrl: 'https://i.pinimg.com/236x/2b/8d/29/2b8d29c19ca209b35b14e91ef60e9100.jpg'
     //     name: 'pringo',
     //     role: 'popping',
@@ -30,7 +30,7 @@ export default {
         flex-direction: column;
         align-items: center;
     }
-    
+
     img {
         border-radius: 50%;
     }

@@ -1,5 +1,7 @@
 <template>
-  <p>🌚</p>
+  <div class="Time">
+    <p>🌚</p>
+  </div>
 </template>
 
 <script>
