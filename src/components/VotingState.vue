@@ -38,7 +38,7 @@ export default {
       player: {
           team: 'Werewolf',
           imgUrl: 'https://i.pinimg.com/236x/2b/8d/29/2b8d29c19ca209b35b14e91ef60e9100.jpg',
-          name: 'pringo']
+          name: 'pringo'
       }
     }
   },
