@@ -2,8 +2,8 @@
   <div id="app">
     <PlayerEntry :thisPlayer="thisPlayer" @playerJoined="addNewPlayer" v-if="step == 0"/>
     <Lobby :thisPlayer="thisPlayer" :players="players" v-else-if="step == 1"/>
-    <single-player-card />
-    <PendingState />
+    <PendingState v-else-if="step == 2"/>
+    <!-- <single-player-card v-else-if="step == 2"/> -->
   </div>
 </template>
 
