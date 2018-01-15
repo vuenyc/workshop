@@ -2,8 +2,8 @@
   <div class="SinglePlayerCard">
       <img :src="player.imgUrl" />
       <h3>{{ player.name }}</h3>
-      <h4>{{ player.role }}</h4>
-      <p>{{ player.description }}</p>
+      <h4 v-if="player.role">{{ player.role }}</h4>
+      <p v-if="player.description">{{ player.description }}</p>
   </div>
 </template>
 

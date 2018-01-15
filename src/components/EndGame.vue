@@ -1,16 +1,14 @@
 <template>
   <div class="Results">
-    <h1>{{ player.team }} won!</h1>
+    <h1>{{ winningTeam }} won!</h1>
 
-    <template v-for="(player, idx) in allPlayers">
-      <SinglePlayerCard :player="player" :key="idx" />
-    </template>
+    <h3>Here's who everyone was:</h3>
+    <SinglePlayerCard v-for="(player, idx) in otherPlayers" :player="player" :key="idx" />
   </div>
 </template>
 
 <script>
 export default {
-
 }
 </script>
 

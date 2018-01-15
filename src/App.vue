@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <PlayerEntry :currentPlayer="currentPlayer" @playerJoined="addNewPlayer" v-if="step == 0"/>
-    <Lobby :currentPlayer="currentPlayer" :players="players" v-else-if="step == 1"/>
+    <PlayerEntry :thisPlayer="thisPlayer" @playerJoined="addNewPlayer" v-if="step == 0"/>
+    <Lobby :thisPlayer="thisPlayer" :players="players" v-else-if="step == 1"/>
     <single-player-card />
     <PendingState />
   </div>
@@ -19,7 +19,7 @@ export default {
   data() {
     return {
       step: 0,
-      currentPlayer: {
+      thisPlayer: {
         name: '',
         ready: false
       },
@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     addNewPlayer(player) {
-      this.currentPlayer = player;
+      this.thisPlayer = player;
       this.players.push(player);
       this.step++;
     }

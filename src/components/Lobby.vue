@@ -2,7 +2,7 @@
   <div class="Lobby">
     <!-- <PlayerList/> -->
     <h1>Waiting for {{ playersLeft }} players to start</h1>
-    <button :disabled="currentPlayer.ready" @click="ready">Start</button>
+    <button :disabled="thisPlayer.ready" @click="ready">Start</button>
     <ul>
       <li v-for="player in players" :key="player.name">
         {{ player.name }} -- Ready? {{ player.ready }}
@@ -13,16 +13,16 @@
 
 <script>
 export default {
-  props: ['players', 'currentPlayer'],
+  props: ['players', 'thisPlayer'],
   data() {
     return {
-      playersLeft: 7 
+      playersLeft: 7
     }
   },
   methods: {
     ready() {
       this.playersLeft--;
-      this.currentPlayer.ready = true;
+      this.thisPlayer.ready = true;
     }
   }
 }

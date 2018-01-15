@@ -1,7 +1,7 @@
 <template>
   <div class="PlayerEntry">
     <!-- game image -->
-    <h1>Welcome to Werewolf</h1> 
+    <h1>Welcome to Werewolf</h1>
     <h3>Enter your name</h3>
     <input v-model="playerName"/>
     <button :disabled="isDisabled" @click="enterGame">Join</button>
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  props: ['currentPlayer'],
+  props: ['thisPlayer'],
   data() {
     return {
       playerName: ''
@@ -19,7 +19,7 @@ export default {
   methods: {
     enterGame() {
       this.$emit('playerJoined', {
-        ...this.currentPlayer,
+        ...this.thisPlayer,
         name: this.playerName
       });
     }
