@@ -1,15 +1,15 @@
 <template>
   <div class="PendingState">
 
-    <Time />
+    <Time :time="time" />
 
-    <div class="PlayerInformation">
+    <div class="player-card">
       <Instructions />
-      <SinglePlayerCard :player="player" />
+      <PlayerProfile :player="player" />
     </div>
 
     <div class="Team" :style="{ backgroundColor: player.team === 'Werewolf' ? 'red' : 'white' }">
-        <h3>{{ player.team }}</h3>
+        <h3>{{ player.team | allCaps }}</h3>
     </div>
 
   </div>
@@ -18,16 +18,18 @@
 <script>
 import Time from "./Time";
 import Instructions from "./Instructions";
-import SinglePlayerCard from "./SinglePlayerCard";
+import PlayerProfile from "./PlayerProfile";
 
 export default {
   components: {
     Time,
     Instructions,
-    SinglePlayerCard
+    PlayerProfile
   },
+  // TODO: re-import props
   data() {
     return {
+      time: 'day',
       player: {
         team: "Werewolf",
         imgUrl:
@@ -36,33 +38,39 @@ export default {
         role: "popping",
         description: "once you pop you can't stop"
       }
-    };
+    }
+  },
+  // TODO: make this filter global
+  filters: {
+    allCaps(str) {
+      return str.toUpperCase()
+    }
   }
-};
+}
 </script>
 
 <style scoped>
-.PendingState {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-.PlayerInformation {
-  display: flex;
-  flex-wrap: wrap;
-}
-.Instructions {
-  background: blue;
-  flex: 3 500px;
-}
-.SinglePlayerCard {
-  background: green;
-  flex: 1 0;
-}
-.Time {
-    align-self: center;
-}
-.Team {
-    text-align: center;
+@media screen and (min-width: 800px) {
+  .player-card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  .Time, .Instructions, .PlayerProfile, .Team {
+    flex: 1;
+  }
+  .Time {
+  }
+  .Instructions {
+    background: blue;
+    flex: 3;
+  }
+  .PlayerProfile {
+    background: green;
+    flex: 1;
+  }
+  .Team {
+      text-align: center;
+  }
 }
 </style>

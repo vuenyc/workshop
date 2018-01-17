@@ -1,5 +1,5 @@
 <template>
-  <div class="SinglePlayerCard">
+  <div class="PlayerProfile">
       <img :src="player.imgUrl" />
       <h3>{{ player.name }}</h3>
       <h4 v-if="player.role">{{ player.role }}</h4>
@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style scoped>
-    .SinglePlayerCard {
+    .PlayerProfile {
         display: flex;
         flex-direction: column;
         align-items: center;

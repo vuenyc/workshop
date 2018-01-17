@@ -3,7 +3,7 @@
     <h1>{{ winningTeam }} won!</h1>
 
     <h3>Here's who everyone was:</h3>
-    <SinglePlayerCard v-for="(player, idx) in otherPlayers" :player="player" :key="idx" />
+    <PlayerProfile v-for="(player, idx) in otherPlayers" :player="player" :key="idx" />
   </div>
 </template>
 

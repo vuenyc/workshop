@@ -1,7 +1,7 @@
 <template>
   <div class="Time">
-    <p v-if="isNight">🌚</p>
-    <p v-else>🌞</p>
+    <p v-show="isNight">🌚</p>
+    <p v-show="isDay">🌞</p>
   </div>
 </template>
 
@@ -16,11 +16,16 @@ export default {
   computed: {
     isNight() {
       return this.time === 'night'
+    },
+    isDay() {
+      return this.time === 'day'
     }
   }
 }
 </script>
 
-<style>
-
+<style scoped>
+  p {
+    font-size: 3em;
+  }
 </style>
