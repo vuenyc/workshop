@@ -1,7 +1,7 @@
 <template>
   <div class="PlayerEntry">
     <!-- game image -->
-    <h1>Welcome to Werewolf</h1>
+    <h1>{{ 'Welcome to Werewolf' | allCaps }}</h1>
     <h3>Enter your name</h3>
     <input v-model="playerName"/>
     <button :disabled="isDisabled" @click="enterGame">Join</button>

@@ -3,7 +3,7 @@
 
     <Time />
 
-    <PlayerProfile v-for="(player, idx) in otherPlayers" :player="player" :key="idx" />
+    <SinglePlayerCard v-for="(player, idx) in otherPlayers" :player="player" :key="idx" />
 
     <button v-if="voteSubmitted">Vote</button>
     <button v-else>Change vote</button>
@@ -14,13 +14,13 @@
 <script>
 import Time from './Time'
 import Instructions from './Instructions'
-import PlayerProfile from './PlayerProfile'
+import SinglePlayerCard from './SinglePlayerCard'
 
 export default {
   components: {
     Time,
     Instructions,
-    PlayerProfile,
+    SinglePlayerCard,
   },
   props: {
     allPlayers: {

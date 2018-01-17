@@ -5,7 +5,7 @@
 
     <div class="row">
       <Instructions class="col _5" />
-      <PlayerProfile :player="player" class="col _5" />
+      <SinglePlayerCard :player="player" class="col _5" />
     </div>
 
     <div class="Team row" :style="{ backgroundColor: player.team === 'Werewolf' ? 'red' : 'white' }">
@@ -18,13 +18,13 @@
 <script>
 import Time from "./Time";
 import Instructions from "./Instructions";
-import PlayerProfile from "./PlayerProfile";
+import SinglePlayerCard from "./SinglePlayerCard";
 
 export default {
   components: {
     Time,
     Instructions,
-    PlayerProfile
+    SinglePlayerCard
   },
   // TODO: re-import props
   data() {
@@ -39,18 +39,12 @@ export default {
         description: "once you pop you can't stop"
       }
     }
-  },
-  // TODO: make this filter global
-  filters: {
-    allCaps(str) {
-      return str.toUpperCase()
-    }
   }
 }
 </script>
 
 <style scoped>
-/* .Time, .Instructions, .PlayerProfile, .Team {
+/* .Time, .Instructions, .SinglePlayerCard, .Team {
   flex-basis: 100%;
 }
 @media screen and (min-width: 800px) {
@@ -59,7 +53,7 @@ export default {
     flex-direction: row;
     flex-wrap: nowrap;
   }
-  .Time, .Instructions, .PlayerProfile, .Team {
+  .Time, .Instructions, .SinglePlayerCard, .Team {
     flex: 1;
   }
   .Time {
@@ -68,7 +62,7 @@ export default {
     background: blue;
     flex: 3;
   }
-  .PlayerProfile {
+  .SinglePlayerCard {
     background: green;
     flex: 1;
   }

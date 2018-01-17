@@ -8,6 +8,8 @@ import './assets/styles.css'
 
 Vue.use(ElementUI)
 
+Vue.filter('allCaps', str => str.toUpperCase())
+
 new Vue({
   el: '#app',
   render: createElement => createElement(App)

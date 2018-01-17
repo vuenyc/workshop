@@ -3,7 +3,7 @@
     <PlayerEntry :thisPlayer="thisPlayer" @playerJoined="addNewPlayer" v-if="step == 0"/>
     <Lobby :thisPlayer="thisPlayer" :players="players" v-else-if="step == 1"/>
     <PendingState v-else-if="step == 2"/>
-    <!-- <PlayerProfile v-else-if="step == 2"/> -->
+    <!-- <SinglePlayerCard v-else-if="step == 2"/> -->
   </div>
 </template>
 
@@ -13,7 +13,7 @@ import Lobby from './components/Lobby'
 import PendingState from './components/PendingState'
 import VotingState from './components/VotingState'
 import EndGame from './components/EndGame'
-import PlayerProfile from './components/PlayerProfile'
+import SinglePlayerCard from './components/SinglePlayerCard'
 
 export default {
   data() {
@@ -33,15 +33,10 @@ export default {
       this.step++
     }
   },
-  filters: {
-    allCaps(str) {
-      return str.toUpperCase()
-    }
-  },
   components: {
     PlayerEntry,
     Lobby,
-    PlayerProfile,
+    SinglePlayerCard,
     PendingState,
     VotingState
   }
