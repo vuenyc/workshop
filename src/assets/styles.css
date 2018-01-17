@@ -1,0 +1,60 @@
+/* Normalizing */
+
+html {
+  /* box-sizing: border-box;
+  font-family: 'Alegreya', serif;
+  font-family: 'Alegreya Sans', sans-serif;
+  font-family: 'Merriweather', serif;
+  font-family: 'Merriweather Sans', sans-serif;
+  font-family: 'Nunito', sans-serif;
+  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto Slab', serif;
+  font-family: 'Roboto Mono', monospace;
+  font-family: 'Quattrocento', serif;
+  font-family: 'Quattrocento Sans', sans-serif;
+  font-family: 'Mogra', cursive;
+  font-family: 'Amiko', sans-serif;
+  font-family: 'Arima Madurai', cursive;
+  font-family: 'Farsan', cursive;
+  font-family: 'Lalezar', cursive;
+  font-family: 'Rakkas', cursive; */
+  font-family: 'Rasa', serif;
+  /* font-family: 'Shrikhand', cursive;
+  font-family: 'Suez One', serif;
+  font-family: 'Yatra One', cursive; */
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+h1 {
+  font-family: 'Rakkas', cursive;
+}
+
+
+/* Grid system */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.column {
+  flex-basis: 100%;
+}
+
+@media screen and (min-width: 800px) {
+  .column {
+    flex: 1;
+  }
+}
