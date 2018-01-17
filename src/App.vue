@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="container">
     <PlayerEntry :thisPlayer="thisPlayer" @playerJoined="addNewPlayer" v-if="step == 0"/>
     <Lobby :thisPlayer="thisPlayer" :players="players" v-else-if="step == 1"/>
     <PendingState v-else-if="step == 2"/>

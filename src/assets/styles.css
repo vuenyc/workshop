@@ -19,7 +19,7 @@ html {
   font-family: 'Farsan', cursive;
   font-family: 'Lalezar', cursive;
   font-family: 'Rakkas', cursive; */
-  font-family: 'Rasa', serif;
+  /* font-family: 'Rasa', serif; */
   /* font-family: 'Shrikhand', cursive;
   font-family: 'Suez One', serif;
   font-family: 'Yatra One', cursive; */
@@ -33,6 +33,12 @@ html {
 
 h1 {
   font-family: 'Rakkas', cursive;
+  text-align: center;
+}
+
+body {
+  font-family: 'Rasa', serif;
+  font-size: 1.3em;
 }
 
 
@@ -43,18 +49,39 @@ h1 {
   margin: 0 auto;
 }
 
-.row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.column {
+.col {
   flex-basis: 100%;
+  padding: 3vw;
+  border: 1px solid #000;
+  margin: 1vw 1vw;
 }
 
 @media screen and (min-width: 800px) {
-  .column {
+  .row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  .col {
     flex: 1;
   }
+  ._25 {
+    flex: 2.5;
+  }
+  ._5 {
+    flex: 5;
+  }
+  ._75 {
+    flex: 7.5;
+  }
 }
+
+.col{
+  padding: 15px;
+  border: 1px solid #666;
+  margin: 5px 0;
+  background: #343436;
+}
+
+

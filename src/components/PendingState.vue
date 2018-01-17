@@ -3,12 +3,12 @@
 
     <Time :time="time" />
 
-    <div class="player-card">
-      <Instructions />
-      <PlayerProfile :player="player" />
+    <div class="row">
+      <Instructions class="col _5" />
+      <PlayerProfile :player="player" class="col _5" />
     </div>
 
-    <div class="Team" :style="{ backgroundColor: player.team === 'Werewolf' ? 'red' : 'white' }">
+    <div class="Team row" :style="{ backgroundColor: player.team === 'Werewolf' ? 'red' : 'white' }">
         <h3>{{ player.team | allCaps }}</h3>
     </div>
 
@@ -50,6 +50,9 @@ export default {
 </script>
 
 <style scoped>
+/* .Time, .Instructions, .PlayerProfile, .Team {
+  flex-basis: 100%;
+}
 @media screen and (min-width: 800px) {
   .player-card {
     display: flex;
@@ -72,5 +75,5 @@ export default {
   .Team {
       text-align: center;
   }
-}
+} */
 </style>
