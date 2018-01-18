@@ -8,7 +8,7 @@ import './assets/styles.css'
 
 Vue.use(ElementUI)
 
-Vue.filter('allCaps', str => str.toUpperCase())
+Vue.filter('toUpperCase', str => str.toUpperCase())
 
 new Vue({
   el: '#app',

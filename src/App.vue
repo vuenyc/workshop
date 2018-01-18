@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container">
+  <div id="app">
     <PlayerEntry :thisPlayer="thisPlayer" @playerJoined="addNewPlayer" v-if="step == 0"/>
     <Lobby :thisPlayer="thisPlayer" :players="players" v-else-if="step == 1"/>
     <PendingState v-else-if="step == 2"/>
@@ -44,8 +44,9 @@ export default {
 </script>
 
 <style>
+  /* Grid system container */
   #app {
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 0 3vw;
   }
 </style>

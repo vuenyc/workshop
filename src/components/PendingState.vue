@@ -3,13 +3,13 @@
 
     <Time :time="time" />
 
-    <div class="row">
-      <Instructions class="col _5" />
-      <SinglePlayerCard :player="player" class="col _5" />
+    <div class="player-info">
+      <Instructions />
+      <SinglePlayerCard :player="player" class="col _25" />
     </div>
 
-    <div class="Team row" :style="{ backgroundColor: player.team === 'Werewolf' ? 'red' : 'white' }">
-        <h3>{{ player.team | allCaps }}</h3>
+    <div class="team" :style="{ backgroundColor: player.team === 'Werewolf' ? 'red' : 'white' }">
+        <h3>{{ player.team | toUpperCase }}</h3>
     </div>
 
   </div>
@@ -44,30 +44,35 @@ export default {
 </script>
 
 <style scoped>
-/* .Time, .Instructions, .SinglePlayerCard, .Team {
+/* columns */
+.Instructions, .SinglePlayerCard, h3 {
   flex-basis: 100%;
+  padding: 0 3vw;
 }
+
 @media screen and (min-width: 800px) {
-  .player-card {
+  /* rows */
+  .Time, .player-info, .team {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
   }
-  .Time, .Instructions, .SinglePlayerCard, .Team {
-    flex: 1;
-  }
-  .Time {
-  }
+  /* columns */
   .Instructions {
     background: blue;
     flex: 3;
   }
-  .SinglePlayerCard {
-    background: green;
+  .SinglePlayerCard, h3 {
     flex: 1;
   }
-  .Team {
-      text-align: center;
+
+
+  /* other styles */
+  .Instructions {
+    font-size: 2em;
   }
-} */
+  h3 {
+    text-align: center;
+  }
+}
 </style>

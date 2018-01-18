@@ -1,8 +1,8 @@
 <template>
   <div class="SinglePlayerCard">
       <img :src="player.imgUrl" />
-      <h3>{{ player.name }}</h3>
-      <h4 v-if="player.role">{{ player.role }}</h4>
+      <h3>{{ player.name | toUpperCase }}</h3>
+      <h4 v-if="player.role">{{ player.role | capitalize }}</h4>
       <p v-if="player.description">{{ player.description }}</p>
   </div>
 </template>
@@ -29,6 +29,7 @@ export default {
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding: 2vh 5vw;
     }
 
     img {

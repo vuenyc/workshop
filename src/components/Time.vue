@@ -26,6 +26,10 @@ export default {
 
 <style scoped>
   p {
+    flex-basis: 100%;
     font-size: 3em;
+    text-align: center;
+    padding: 1vh 0;
+    margin: 0;
   }
 </style>
