@@ -11,7 +11,8 @@
     <div class="team" :style="{ backgroundColor: player.team === 'Werewolf' ? 'red' : 'white' }">
         <h3>{{ player.team | toUpperCase }}</h3>
     </div>
-
+    <!--TODO: leave for now for debug-->
+    <!-- <button v-on:click="">go next</button>   -->
   </div>
 </template>
 

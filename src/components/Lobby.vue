@@ -23,6 +23,10 @@ export default {
     ready() {
       this.playersLeft--;
       this.thisPlayer.ready = true;
+      //TODO: go to next stage by client side, i think we need service side logic here. 
+      setTimeout(() => {
+        this.$emit('nextStep');
+      }, 3000);
     }
   }
 }
