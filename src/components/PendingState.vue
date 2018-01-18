@@ -1,8 +1,6 @@
 <template>
   <div class="PendingState">
-
-    <Time />
-
+    <!-- <Time /> -->
     <div class="PlayerInformation">
       <Instructions />
       <SinglePlayerCard :player="player" />
@@ -11,7 +9,8 @@
     <div class="Team" :style="{ backgroundColor: player.team === 'Werewolf' ? 'red' : 'white' }">
         <h3>{{ player.team }}</h3>
     </div>
-
+    <!--TODO: leave for now for debug-->
+    <!-- <button v-on:click="">go next</button>   -->
   </div>
 </template>
 

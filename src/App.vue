@@ -1,17 +1,16 @@
 <template>
   <div id="app">
     <PlayerEntry :thisPlayer="thisPlayer" @playerJoined="addNewPlayer" v-if="step == 0"/>
-    <Lobby :thisPlayer="thisPlayer" :players="players" v-else-if="step == 1"/>
-    <PendingState v-else-if="step == 2"/>
-    <!-- <single-player-card v-else-if="step == 2"/> -->
+    <Lobby :thisPlayer="thisPlayer" :players="players" @nextStep="step++" v-else-if="step == 1"/>
+    <GameSession @nextStep="step++" :playerId="'ringo'" :players="players" v-else-if="step == 2"/>
+    <EndGame @nextStep="step++" v-else-if="step == 3"/>
   </div>
 </template>
 
 <script>
 import PlayerEntry from './components/PlayerEntry'
 import Lobby from './components/Lobby'
-import PendingState from './components/PendingState'
-import VotingState from './components/VotingState'
+import GameSession from './components/GameSession'
 import EndGame from './components/EndGame'
 import SinglePlayerCard from './components/SinglePlayerCard'
 
@@ -37,8 +36,8 @@ export default {
     PlayerEntry,
     Lobby,
     SinglePlayerCard,
-    PendingState,
-    VotingState
+    GameSession,
+    EndGame
   }
 };
 </script>

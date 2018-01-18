@@ -1,5 +1,6 @@
 <template>
   <div class="Time">
+    {{time}}
     <p v-if="isNight">🌚</p>
     <p v-else>🌞</p>
   </div>
@@ -21,6 +22,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.Time {
+  font-size: 2em;
+}
 </style>

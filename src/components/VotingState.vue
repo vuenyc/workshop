@@ -1,11 +1,9 @@
 <template>
   <div class="VotingState">
-
-    <Time />
-
+    <!-- <Time /> -->
     <SinglePlayerCard v-for="(player, idx) in otherPlayers" :player="player" :key="idx" />
 
-    <button v-if="voteSubmitted">Vote</button>
+    <button v-if="!voteSubmitted" v-on:click="vote">Vote</button>
     <button v-else>Change vote</button>
 
   </div>
@@ -23,13 +21,22 @@ export default {
     SinglePlayerCard,
   },
   props: {
-    allPlayers: {
+    players: {
       type: Array,
+      required: true
+    },
+    playerId: {
+      type: String, 
       required: true
     },
     numVotes: {
       type: Number,
       required: true
+    }
+  },
+  methods: {
+    vote() {
+      this.$emit('vote')
     }
   },
   data() {
@@ -42,9 +49,11 @@ export default {
       }
     }
   },
+  //TODO: Not sure if we want to do computed property? this only need to be called once on mount. 
   computed: {
     otherPlayers() {
-      return allPlayers.filter(otherPlayer => otherPlayer !== thisPlayer)
+      //TODO: thisplayer is not defined. need way to id current user from user obj 
+      return this.players.filter(otherPlayer => otherPlayer.id !== this.playerId)
                        .map(otherPlayer => ({
                          imgUrl: otherPlayer.imgUrl,
                          name: otherPlayer.name
