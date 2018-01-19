@@ -1,0 +1,36 @@
+{
+    "player": {
+        "playerId": "ringo1516315840338"
+    },
+    "players": [
+        {
+            "playerId": "ringo1516315840338",
+            "name": "ringo"
+        },
+        {
+            "playerId": "justin1516315840438",
+            "name": "justin"
+        },
+        {
+            "playerId": "bruno1516312840338",
+            "name": "bruno"
+        },
+        {
+            "playerId": "tim1516315830338",
+            "name": "tim"
+        },
+        {
+            "playerId": "tessa1513315840338",
+            "name": "tessa"
+        },
+        {
+            "playerId": "joseph1576315840338",
+            "name": "joseph"
+        },
+        {
+            "playerId": "alex1516915840338",
+            "name": "alex"
+        }
+    ]
+}
+   

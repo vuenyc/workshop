@@ -1,8 +1,8 @@
 <template>
 <div class="GameSession">
-    <Time :time="time" />
-    <VotingState  v-if="isVoted" playerId="playerId" :numVotes="numVotes" @vote="vote" :players="players" />
-    <PendingState v-else :players="players" />
+    <Time time="time" />
+    <VotingState  v-if="isVoted" playerId="playerId" :numVotes="numVotes" @vote="vote" players="players" />
+    <PendingState v-else players="players" />
     <button @click="timeChange">change time</button>
 </div>
 </template>
@@ -52,9 +52,11 @@ export default {
     },
     //TODO: put there for now, so we can go to end game eventually
     mounted() {
-        setTimeout(() => {
-            this.gameOver();
-        }, 10000);
+        //start game here
+        while() {
+
+        } 
+        this.gameOver(); 
     }
 }
 </script>
