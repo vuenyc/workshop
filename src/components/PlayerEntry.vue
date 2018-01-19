@@ -9,7 +9,7 @@
       <h2>Enter your name:</h2>
 
       <div class="player-input">
-        <input v-model="playerName"/>
+        <input v-model="playerName" @keyup.enter="enterGame"/>
         <button :disabled="isDisabled" @click="enterGame">Join</button>
       </div>
     </div>
