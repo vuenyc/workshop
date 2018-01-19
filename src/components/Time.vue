@@ -1,7 +1,7 @@
 <template>
   <div class="Time">
-    <p v-if="isNight">🌚</p>
-    <p v-else>🌞</p>
+    <p v-show="isNight">🌚</p>
+    <p v-show="isDay">🌞</p>
   </div>
 </template>
 
