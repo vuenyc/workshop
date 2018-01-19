@@ -10,13 +10,15 @@
 
       <div class="player-input">
         <input v-model="playerName"/>
-        <button :disabled="isDisabled" @click="enterGame">Join</button>
+        <button :disabled="isDisabled" @click="joinGame">Join</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   props: ['thisPlayer'],
   data() {
@@ -25,12 +27,7 @@ export default {
     }
   },
   methods: {
-    enterGame() {
-      this.$emit('playerJoined', {
-        ...this.thisPlayer,
-        name: this.playerName
-      });
-    }
+    ...mapActions(['joinGame'])
   },
   computed: {
     isDisabled() {
