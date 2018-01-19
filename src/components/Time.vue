@@ -1,13 +1,7 @@
 <template>
   <div class="Time">
-<<<<<<< HEAD
-    <p v-show="isNight">🌚</p>
-    <p v-show="isDay">🌞</p>
-=======
-    {{time}}
     <p v-if="isNight">🌚</p>
     <p v-else>🌞</p>
->>>>>>> master
   </div>
 </template>
 
