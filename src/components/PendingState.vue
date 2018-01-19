@@ -1,13 +1,15 @@
 <template>
   <div class="PendingState">
-    <!-- <Time /> -->
-    <div class="PlayerInformation">
+
+    <Time :time="time" />
+
+    <div class="player-info">
       <Instructions />
-      <SinglePlayerCard :player="player" />
+      <SinglePlayerCard :player="player" class="col _25" />
     </div>
 
-    <div class="Team" :style="{ backgroundColor: player.team === 'Werewolf' ? 'red' : 'white' }">
-        <h3>{{ player.team }}</h3>
+    <div class="team" :style="{ backgroundColor: player.team === 'Werewolf' ? 'red' : 'white' }">
+        <h3>{{ player.team | toUpperCase }}</h3>
     </div>
     <!--TODO: leave for now for debug-->
     <!-- <button v-on:click="">go next</button>   -->
@@ -25,8 +27,10 @@ export default {
     Instructions,
     SinglePlayerCard
   },
+  // TODO: re-import props
   data() {
     return {
+      time: 'day',
       player: {
         team: "Werewolf",
         imgUrl:
@@ -35,33 +39,41 @@ export default {
         role: "popping",
         description: "once you pop you can't stop"
       }
-    };
+    }
   }
-};
+}
 </script>
 
 <style scoped>
-.PendingState {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
+/* columns */
+.Instructions, .SinglePlayerCard, h3 {
+  flex-basis: 100%;
+  padding: 0 3vw;
 }
-.PlayerInformation {
-  display: flex;
-  flex-wrap: wrap;
-}
-.Instructions {
-  background: blue;
-  flex: 3 500px;
-}
-.SinglePlayerCard {
-  background: green;
-  flex: 1 0;
-}
-.Time {
-    align-self: center;
-}
-.Team {
+
+@media screen and (min-width: 800px) {
+  /* rows */
+  .Time, .player-info, .team {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  /* columns */
+  .Instructions {
+    background: blue;
+    flex: 3;
+  }
+  .SinglePlayerCard, h3 {
+    flex: 1;
+  }
+
+
+  /* other styles */
+  .Instructions {
+    font-size: 2em;
+  }
+  h3 {
     text-align: center;
+  }
 }
 </style>

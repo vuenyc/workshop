@@ -27,9 +27,9 @@ export default {
   },
   methods: {
     addNewPlayer(player) {
-      this.thisPlayer = player;
-      this.players.push(player);
-      this.step++;
+      this.thisPlayer = player
+      this.players.push(player)
+      this.step++
     }
   },
   components: {
@@ -43,10 +43,10 @@ export default {
 </script>
 
 <style>
-  html, body, #app {
-    height: 100%;
-    padding: 0;
-    margin: 0;
+  /* Grid system container */
+  #app {
+    max-width: 1600px;
+    margin: 0 3vw;
   }
 </style>
 
