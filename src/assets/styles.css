@@ -107,6 +107,13 @@ button>span {
 
 
 button {
+  background: #37474f;
+  color: #fff;
+  border-color: #fff;
+  border: 3px solid;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
   overflow: hidden;
   width: 245px;
   -webkit-transition: border-color 0.3s, color 0.3s;
