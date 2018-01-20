@@ -1,8 +1,8 @@
 <template>
 <div class="GameSession">
-    <Time :time="time" />
-    <VotingState  v-if="isVoted" playerId="playerId" :numVotes="numVotes" @vote="vote" :players="players" />
-    <PendingState v-else :players="players" />
+    <Time time="time" />
+    <VotingState  v-if="isVoted" playerId="playerId" :numVotes="numVotes" @vote="vote" players="players" />
+    <PendingState v-else players="players" />
     <button @click="timeChange">change time</button>
 </div>
 </template>
@@ -30,6 +30,10 @@ export default {
         VotingState,
         Time
     },
+    computed: {
+        numWerewolves: () => this.players.filter(player => player.role === "werewolf").length,
+        numVillagers: () => this.players.filter(player => player.role === "villager").length
+    },
     data() {
         //initali state
         return {
@@ -45,16 +49,31 @@ export default {
         gameOver() {
             this.$emit("nextStep");
         },
+        kills(id) {
+            
+        },
         vote() {
             this.isVoted = !this.isVoted;
             numVotes += 1;
+        }, 
+        round() {
+            if(this.time === "night") {
+                //werewolf do stuff here
+            } else {
+                //villiager do stuff here
+            }
+            // game is still going 
+            if(this.numVillagers > this.numWerewolves && this.numWerewolves > 0) {
+                this.time = this.time === "night" ? "day" : "night";
+            } else {
+                this.gameOver(); 
+            }
         }
     },
     //TODO: put there for now, so we can go to end game eventually
     mounted() {
-        setTimeout(() => {
-            this.gameOver();
-        }, 10000);
+        //start game here
+       this.round();
     }
 }
 </script>

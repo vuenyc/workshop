@@ -1,28 +1,46 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import io from 'socket.io-client';
-import { ENTER_LOBBY } from './api/gameEvents';
 
 Vue.use(Vuex)
 
-const socket = io('http://localhost');
-const debug = process.env.NODE_ENV !== 'production'
-
 export default new Vuex.Store({
-  strict: debug,
   state: {
     currentPlayer: {
-      id: null,
-      name: ''
+      name: 'ENTER YOUR NAME HERE',
     },
-    currentView: 'PlayerEntry'
+    allPlayers:[
+      {
+        name: 'John',
+      },
+      {
+        name: 'Alex',
+      },
+      {
+        name: 'Bruno',
+      },
+      {
+        name: 'Tessa',
+      },
+      {
+        name: 'Justin',
+      },
+      {
+        name: 'Ringo',
+      }
+    ]
   },
   mutations: {
-
+    addPlayer(state, playerName) {
+      state.allPlayers.push({name: playerName});
+    }, 
+    saveCurrentPlayer(state, playerName) {
+      state.currentPlayer.name = playerName;
+    }
   },
   actions: {
-    enterLobby() {
-      socket.emit(ENTER_LOBBY, )
+    enterLobby({commit}, playerName) {
+      commit("addPlayer", playerName);
+      commit("saveCurrentPlayer", playerName);
     }
   }
 })

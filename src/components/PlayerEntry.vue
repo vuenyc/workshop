@@ -10,7 +10,7 @@
 
       <div class="player-input">
         <input v-model="playerName" @keyup.enter="enterLobby(playerName)"/>
-        <button :disabled="isDisabled" @click="enterLobby">Join</button>
+        <button :disabled="isDisabled" @click="enterLobby(playerName); $router.push('lobby')">Join</button>
       </div>
     </div>
   </div>
