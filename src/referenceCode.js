@@ -8,8 +8,8 @@ const preGameState = {
       name: 'pringo'
     }
   ],
-  gameStartable: numPlayers === 7, // will be flipped by button
-}
+  gameStartable: numPlayers === 7 // will be flipped by button
+};
 
 const duringGameState = {
   sessionId: 'pig', // optional
@@ -25,8 +25,8 @@ const duringGameState = {
       name: 'pringo',
       avatar: 'imgUrl',
       isAlive: true,
-      killVotes: 4,
-    },
+      killVotes: 4
+    }
   ],
 
   time: 'night',
@@ -35,12 +35,17 @@ const duringGameState = {
   seersPick: 1,
 
   countVotes() {
-      const victim = allPlayers.reduce((currentPlayer, nextPlayer) => {
-                          if(currentPlayer.killVotes > nextPlayer.killVotes) return currentPlayer
-                          else if(currentPlayer.killVotes < nextPlayer.killVotes) return { count: 1, ...nextPlayer }
-                          else ++currentPlayer.count
-                        }, { id: null, killVotes: 0, count: 0})
-      return victim.count === 1 ? victim.id : null;
+    const victim = allPlayers.reduce(
+      (currentPlayer, nextPlayer) => {
+        if (currentPlayer.killVotes > nextPlayer.killVotes)
+          return currentPlayer;
+        else if (currentPlayer.killVotes < nextPlayer.killVotes)
+          return { count: 1, ...nextPlayer };
+        else ++currentPlayer.count;
+      },
+      { id: null, killVotes: 0, count: 0 }
+    );
+    return victim.count === 1 ? victim.id : null;
   },
 
   vote(playerid) {
@@ -49,10 +54,7 @@ const duringGameState = {
     //   if()
     // })
   }
-
-}
-
-
+};
 
 // In-game start logic
 const players = {
@@ -60,76 +62,72 @@ const players = {
   doctor: 1,
   seer: 1,
   villagers: 5 // or more
-}
+};
 
-let time = 'night'
+let time = 'night';
 
 let numVillagers = players.villagers.length + 2,
-  numWerewolves = 2
+  numWerewolves = 2;
 
 while (numVillagers > numWerewolves && numWerewolves > 0) {
   if (night) {
-    let isSaved = false
+    let isSaved = false;
 
-    announce('Werewolves, open your eyes')
-    announce('Werewolves (silently) pick someone to kill')
+    announce('Werewolves, open your eyes');
+    announce('Werewolves (silently) pick someone to kill');
 
-    werewolvesKill(victim)
+    werewolvesKill(victim);
 
-    announce('Werewolves, close your eyes')
-    announce('Doctor, open your eyes')
-    announce('Doctor, who would you like to heal?')
+    announce('Werewolves, close your eyes');
+    announce('Doctor, open your eyes');
+    announce('Doctor, who would you like to heal?');
 
-    doctorSaves(patient)
+    doctorSaves(patient);
 
-    announce('Doctor, close your eyes')
-    if (patient === victim) isSaved = true
+    announce('Doctor, close your eyes');
+    if (patient === victim) isSaved = true;
 
-    announce('Seer, open your eyes')
-    announce('Seer, pick someone to ask about')
+    announce('Seer, open your eyes');
+    announce('Seer, pick someone to ask about');
 
-    seerInvestigates(villager)
+    seerInvestigates(villager);
 
-    werewolves.contains(villager) ?
-      notifySeer(true) :
-      notifySeer(false)
+    werewolves.contains(villager) ? notifySeer(true) : notifySeer(false);
 
-    announce('Everybody open your eyes; It\'s daytime')
+    announce("Everybody open your eyes; It's daytime");
 
     if (isSaved) {
-      announce('Someone has been saved')
-      isSaved = false
+      announce('Someone has been saved');
+      isSaved = false;
     } else {
-      announce(`${ victim.name } has been killed!`)
-        --numVillagers
+      announce(`${victim.name} has been killed!`);
+      --numVillagers;
     }
 
-    time = 'day'
+    time = 'day';
   }
 
   if (day) {
     let votingTimeLeft = 1200;
 
     const voteTimer = setInterval(() => {
-      if (votingTimeLeft > 0) --votingTimeLeft
-      else clearInterval(voteTimer)
-    }, 100)
+      if (votingTimeLeft > 0) --votingTimeLeft;
+      else clearInterval(voteTimer);
+    }, 100);
 
-    announce('It is daytime; Everyone open your eyes')
-    announce('Introduce yourselves and decide on who to kill')
+    announce('It is daytime; Everyone open your eyes');
+    announce('Introduce yourselves and decide on who to kill');
 
     while (!majorityDecision && !everyoneVoted && votingTimeLeft) {
-      playersVote(villager)
+      playersVote(villager);
     }
 
-    werewolves.contains(villager) ?
-      --numWerewolves :
-      --numVillagers
+    werewolves.contains(villager) ? --numWerewolves : --numVillagers;
 
-    time = 'night'
+    time = 'night';
   }
 }
 
-numWerewolves === numVillagers ?
-  announce('Werewolves have won') :
-  announce('Villagers have won')
+numWerewolves === numVillagers
+  ? announce('Werewolves have won')
+  : announce('Villagers have won');
