@@ -23,14 +23,14 @@ export default [
   {
     imgUrl:
       "https://www.ald.softbankrobotics.com/sites/aldebaran/files/images/en_savoir_plus_sur_nao_2.png",
-    name: "justin",
+    name: "bruno",
     role: "popping",
     description: "once you pop you can't stop"
   },
   {
     imgUrl:
       "https://www.ald.softbankrobotics.com/sites/aldebaran/files/images/en_savoir_plus_sur_nao_2.png",
-    name: "justin",
+    name: "Jack",
     role: "popping",
     description: "once you pop you can't stop"
   },
