@@ -42,6 +42,7 @@ export default new Vuex.Store({
     enterLobby({commit}, playerName) {
       commit("addPlayer", playerName);
       commit("saveCurrentPlayer", playerName);
+      router.push('lobby');
     }, 
     stateGame() {
       router.push({ name: 'GameSession' });
