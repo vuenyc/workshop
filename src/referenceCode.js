@@ -1,3 +1,60 @@
+const preGameState = {
+  sessionId: 'pig', // optional
+  numPlayers: 7, // until 7,
+  thisPlayerId: 1,
+  allPlayers: [
+    {
+      id: 1,
+      name: 'pringo'
+    }
+  ],
+  gameStartable: numPlayers === 7, // will be flipped by button
+}
+
+const duringGameState = {
+  sessionId: 'pig', // optional
+
+  numVillagers: 5,
+  numWerewolves: 2,
+
+  thisPlayerId: 1,
+  allPlayers: [
+    {
+      id: 1,
+      role: 'doctor',
+      name: 'pringo',
+      avatar: 'imgUrl',
+      isAlive: true,
+      killVotes: 4,
+    },
+  ],
+
+  time: 'night',
+  werewolfVictim: 1, // id
+  doctorPatient: 1,
+  seersPick: 1,
+
+  countVotes() {
+      const victim = allPlayers.reduce((currentPlayer, nextPlayer) => {
+                          if(currentPlayer.killVotes > nextPlayer.killVotes) return currentPlayer
+                          else if(currentPlayer.killVotes < nextPlayer.killVotes) return { count: 1, ...nextPlayer }
+                          else ++currentPlayer.count
+                        }, { id: null, killVotes: 0, count: 0})
+      return victim.count === 1 ? victim.id : null;
+  },
+
+  vote(playerid) {
+    this.player.voted = true;
+    // this.allPlayers.map(player => {
+    //   if()
+    // })
+  }
+
+}
+
+
+
+// In-game start logic
 const players = {
   werewolves: 2,
   doctor: 1,
