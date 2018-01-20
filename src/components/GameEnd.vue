@@ -1,7 +1,7 @@
 <template>
   <div class="GameEnd">
 
-    <h1>{{ winningTeam }} won!</h1>
+    <h1>The {{ winningTeam }} won!</h1>
 
     <h3>Here's who everyone was:</h3>
 
@@ -35,6 +35,7 @@ export default {
   // },
   data() {
     return {
+      winningTeam: "werewolves",
       players: [
         {
             imgUrl: 'https://i.pinimg.com/236x/2b/8d/29/2b8d29c19ca209b35b14e91ef60e9100.jpg',
