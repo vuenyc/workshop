@@ -1,7 +1,7 @@
 <template>
   <div class="VotingState">
     <Time :time="time" />
-    <AllPlayersGrid :players="otherPlayers" />
+    <AllPlayersGrid :players="otherPlayers" @select="select"/>
     <button v-if="selectedPlayer" @click="vote">Vote</button>
   </div>
 </template>
@@ -20,6 +20,9 @@ export default {
     AllPlayersGrid
   },
   methods: {
+    select(player) {
+      //another local state data here
+    },
     vote() {
       this.$emit("vote");
     }

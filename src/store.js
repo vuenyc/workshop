@@ -25,6 +25,7 @@ export default new Vuex.Store({
         return player;
       });
     }
+    
   },
   actions: {
     enterLobby({ commit }, playerName) {
@@ -42,7 +43,9 @@ export default new Vuex.Store({
         `game/${getters.currentPlayer.role === "Werewolf" ? "vote" : "wait"}`
       );
     },
-    round() {}
+    round() {
+
+    }
   },
   getters: {
     currentPlayer(state) {

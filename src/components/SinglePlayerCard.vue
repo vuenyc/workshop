@@ -1,5 +1,5 @@
 <template>
-  <div class="SinglePlayerCard">
+  <div :class="['SinglePlayerCard', selected ? 'selected' : '' ]"  @click="$emit('clicked', player)">
     <div class="card-content" :class="{ selected: player.isSelected }">
       <img :src="player.imgUrl" />
       <h3>{{ player.name }}</h3>
@@ -11,16 +11,14 @@
 
 <script>
 export default {
-    // player: {,
-    //     imgUrl: 'https://i.pinimg.com/236x/2b/8d/29/2b8d29c19ca209b35b14e91ef60e9100.jpg',
-    //     name: 'pringo',
-    //     role: 'popping',
-    //     description: 'once you pop you can\'t stop'
-    // }
     props: {
         player: {
             type: Object,
             required: true
+        },
+        selected: {
+            type: Boolean,
+            required: false
         }
     }
 };
