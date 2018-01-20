@@ -7,56 +7,31 @@
     </div>
 
     <div class="waiting-players">
-      <SinglePlayerCard v-for="(player, idx) in players" :key="idx" :player="player" />
+      <SinglePlayerCard v-for="(player, idx) in allPlayers" :key="idx" :player="player" />
     </div>
 
-    <button :disabled="playersLeft" @click="ready">start game</button>
+    <button :disabled="playersLeft" @click="startGame">start game</button>
 
   </div>
 </template>
 
 <script>
 import SinglePlayerCard from './SinglePlayerCard'
+import { mapActions, mapState } from 'vuex';
 
 export default {
   components: {
     SinglePlayerCard,
   },
   // props: ['players', 'thisPlayer'],
-  data() {
-    return {
-      playersLeft: 2,
-      players: [
-        {
-            imgUrl: 'https://i.pinimg.com/236x/2b/8d/29/2b8d29c19ca209b35b14e91ef60e9100.jpg',
-            name: 'pringo',
-            role: 'popping',
-            description: 'once you pop you can\'t stop'
-        }, {
-            imgUrl: 'https://www.ald.softbankrobotics.com/sites/aldebaran/files/images/en_savoir_plus_sur_nao_2.png',
-            name: 'justin',
-            role: 'popping',
-            description: 'once you pop you can\'t stop'
-        }, {
-            imgUrl: 'https://i.pinimg.com/236x/2b/8d/29/2b8d29c19ca209b35b14e91ef60e9100.jpg',
-            name: 'pringo',
-            role: 'popping',
-            description: 'once you pop you can\'t stop'
-        }, {
-            imgUrl: 'https://www.ald.softbankrobotics.com/sites/aldebaran/files/images/en_savoir_plus_sur_nao_2.png',
-            name: 'justin',
-            role: 'popping',
-            description: 'once you pop you can\'t stop'
-        }, {
-            imgUrl: 'https://www.ald.softbankrobotics.com/sites/aldebaran/files/images/en_savoir_plus_sur_nao_2.png',
-            name: 'justin',
-            role: 'popping',
-            description: 'once you pop you can\'t stop'
-        },
-      ]
-    }
-  },
   methods: {
+    ...mapActions(['startGame'])
+  },
+  computed: {
+    ...mapState(['allPlayers']),
+    playersLeft() {
+      return 7 - this.allPlayers.length
+    }
   }
 }
 </script>

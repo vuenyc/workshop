@@ -43,7 +43,7 @@ export default new Vuex.Store({
       commit("addPlayer", playerName);
       commit("saveCurrentPlayer", playerName);
     }, 
-    stateGame() {
+    startGame() {
       router.push({ name: 'GameSession' });
     }
   }
