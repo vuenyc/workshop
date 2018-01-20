@@ -9,7 +9,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     playerName: "ENTER YOUR NAME HERE",
-    allPlayers: []
+    allPlayers: [],
+    time: "night"
   },
   mutations: {
     addPlayer(state, player) {
@@ -36,17 +37,22 @@ export default new Vuex.Store({
     },
     startGame({ state, commit, getters }) {
       commit("setRoles", roles);
-      debugger;
       router.push(
         `game/${getters.currentPlayer.role === "Werewolf" ? "vote" : "wait"}`
       );
-    }
+    },
+    round() {}
   },
   getters: {
-    currentPlayer: (state) => {
+    currentPlayer(state) {
       return state.allPlayers.filter(
         player => player.name === state.playerName
       )[0];
+    },
+    otherPlayers(state) {
+      return state.allPlayers.filter(
+        player => player.name !== state.playerName
+      );
     }
   }
 });

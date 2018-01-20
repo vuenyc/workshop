@@ -1,11 +1,10 @@
 <template>
   <div class="VotingState">
-    <!-- <Time /> -->
-    <SinglePlayerCard v-for="(player, idx) in otherPlayers" :player="player" :key="idx" />
-
+    <Time :time="time"/>
+    <div class="PlayerSelection">
+      <SinglePlayerCard v-for="(player, idx) in otherPlayers" :player="player" :key="idx" />
+    </div>
     <button v-if="!voteSubmitted" v-on:click="vote">Vote</button>
-    <button v-else>Change vote</button>
-
   </div>
 </template>
 
@@ -13,6 +12,7 @@
 import Time from './Time'
 import Instructions from './Instructions'
 import SinglePlayerCard from './SinglePlayerCard'
+import { mapActions, mapState, mapGetters } from "vuex"
 
 export default {
   components: {
@@ -42,26 +42,25 @@ export default {
   data() {
     return {
       voteSubmitted: false,
-      player: {
-          team: 'Werewolf',
-          imgUrl: 'https://i.pinimg.com/236x/2b/8d/29/2b8d29c19ca209b35b14e91ef60e9100.jpg',
-          name: 'pringo'
-      }
     }
   },
-  //TODO: Not sure if we want to do computed property? this only need to be called once on mount. 
   computed: {
-    otherPlayers() {
-      //TODO: thisplayer is not defined. need way to id current user from user obj 
-      return this.players.filter(otherPlayer => otherPlayer.id !== this.playerId)
-                       .map(otherPlayer => ({
-                         imgUrl: otherPlayer.imgUrl,
-                         name: otherPlayer.name
-                       }))
-    }
+    ...mapState(["allPlayers", "time"]),
+    ...mapGetters(["currentPlayer", "otherPlayers"]),
   }
 }
 </script>
 
 <style scoped>
+.VotingState {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.PlayerSelection {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; 
+}
 </style>

@@ -5,7 +5,7 @@
 
     <div class="player-info">
       <Instructions />
-      <SinglePlayerCard :player="player" class="col _25" />
+      <SinglePlayerCard :player="currentPlayer" class="col _25" />
     </div>
 
     <div class="team" :style="{ backgroundColor: player.team === 'Werewolf' ? 'red' : 'white' }">
@@ -20,6 +20,8 @@
 import Time from "./Time";
 import Instructions from "./Instructions";
 import SinglePlayerCard from "./SinglePlayerCard";
+import { mapActions, mapState, mapGetters } from "vuex";
+
 
 export default {
   components: {
@@ -27,7 +29,13 @@ export default {
     Instructions,
     SinglePlayerCard
   },
-  // TODO: re-import props
+  methods: {
+    ...mapActions([""])
+  },
+  computed: {
+    ...mapState(["allPlayers", "time"]),
+    ...mapGetters(["currentPlayer"])
+  },
   data() {
     return {
       time: 'day',
