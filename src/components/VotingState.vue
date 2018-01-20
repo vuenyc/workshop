@@ -2,7 +2,7 @@
   <div class="VotingState">
     <Time :time="time" />
     <AllPlayersGrid :players="otherPlayers" @select="select"/>
-    <button v-if="selectedPlayer" @click="vote">Vote</button>
+    <button v-if="selectedPlayer" @click="vote(selectedPlayer)">Vote</button>
   </div>
 </template>
 
@@ -19,19 +19,25 @@ export default {
     Instructions,
     AllPlayersGrid
   },
+  Data() {
+    return {
+      selectedPlayer: null
+    }
+  },
   methods: {
     select(player) {
-      //another local state data here
-    },
-    vote() {
-      this.$emit("vote");
-    }
+      this.selectedPlayer = player;
+    }, 
+    ...mapActions(["vote"])
   },
   data() {
     return {
       voteSubmitted: false,
       selectedPlayer: true
     };
+  },
+  method: {
+    ...mapActions(["vote"])
   },
   computed: {
     ...mapState(["allPlayers", "time"]),

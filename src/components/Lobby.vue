@@ -34,7 +34,6 @@ export default {
   },
   mounted() {
     while (this.playersLeft !== 0) {
-      console.log(this.playersLeft);
         const { name, imgUrl } = players.pop();
         this.$store.commit("addPlayer", { name, imgUrl });
     }

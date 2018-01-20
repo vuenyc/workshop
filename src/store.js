@@ -24,8 +24,14 @@ export default new Vuex.Store({
         player.role = roles.pop();
         return player;
       });
+    },
+    voteToKill(state, player) {
+      state.allPlayers.forEach(p => {
+        if (p.name === player.name) {
+          p.killVoteCount = p.killVoteCount ? p.killVoteCount + 1  : 1 ;
+        } 
+      });
     }
-    
   },
   actions: {
     enterLobby({ commit }, playerName) {
@@ -35,7 +41,7 @@ export default new Vuex.Store({
           "https://www.ald.softbankrobotics.com/sites/aldebaran/files/images/en_savoir_plus_sur_nao_2.png"
       });
       commit("saveCurrentPlayer", playerName);
-      router.push("lobby")
+      router.push("lobby");
     },
     startGame({ state, commit, getters }) {
       commit("setRoles", roles);
@@ -43,8 +49,8 @@ export default new Vuex.Store({
         `game/${getters.currentPlayer.role === "Werewolf" ? "vote" : "wait"}`
       );
     },
-    round() {
-
+    vote({ commit }, player) {
+      commit("voteToKill", player);
     }
   },
   getters: {
