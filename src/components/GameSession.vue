@@ -3,7 +3,6 @@
     <Time time="time" />
     <VotingState  v-if="isVoted" playerId="playerId" :numVotes="numVotes" @vote="vote" players="players" />
     <PendingState v-else players="players" />
-    <button @click="timeChange">change time</button>
 </div>
 </template>
 
@@ -21,7 +20,7 @@ export default {
         },
         //use to identify player
         playerId: {
-            type: String, 
+            type: String,
             required: true
         }
     },
@@ -44,29 +43,29 @@ export default {
     },
     methods: {
         timeChange() {
-            this.time = this.time === "night" ? "day" : "night" 
+            this.time = this.time === "night" ? "day" : "night"
         },
         gameOver() {
             this.$emit("nextStep");
         },
         kills(id) {
-            
+
         },
         vote() {
             this.isVoted = !this.isVoted;
             numVotes += 1;
-        }, 
+        },
         round() {
             if(this.time === "night") {
                 //werewolf do stuff here
             } else {
                 //villiager do stuff here
             }
-            // game is still going 
+            // game is still going
             if(this.numVillagers > this.numWerewolves && this.numWerewolves > 0) {
                 this.time = this.time === "night" ? "day" : "night";
             } else {
-                this.gameOver(); 
+                this.gameOver();
             }
         }
     },
