@@ -10,9 +10,16 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
+    "@std/esm": "^0.19.6",
     "element-ui": "^2.0.11",
+    "express": "^4.16.2",
+    "pkg-dir": "^2.0.0",
+    "socket.io": "^2.0.4",
+    "socket.io-client": "^2.0.4",
     "vue": "^2.5.11",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue-socket.io": "^2.1.1-b",
+    "vuex": "^3.0.1"
   },
   "browserslist": [
     "> 1%",
@@ -27,6 +34,7 @@
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
     "file-loader": "^1.1.6",
+    "html-webpack-plugin": "^2.30.1",
     "vue-loader": "^13.0.5",
     "vue-template-compiler": "^2.4.4",
     "webpack": "^3.6.0",
