@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import router from './router';
+import router from './router'
+
+import roles from './api/role'
 
 Vue.use(Vuex)
 
@@ -10,41 +12,33 @@ export default new Vuex.Store({
       name: 'ENTER YOUR NAME HERE',
     },
     allPlayers:[
-      {
-        name: 'John',
-      },
-      {
-        name: 'Alex',
-      },
-      {
-        name: 'Bruno',
-      },
-      {
-        name: 'Tessa',
-      },
-      {
-        name: 'Justin',
-      },
-      {
-        name: 'Ringo',
-      }
     ]
   },
   mutations: {
-    addPlayer(state, playerName) {
-      state.allPlayers.push({name: playerName});
+    addPlayer(state, player) {
+      state.allPlayers.push(player);
     }, 
     saveCurrentPlayer(state, playerName) {
       state.currentPlayer.name = playerName;
-    }
+    }, 
+    setRoles(state, roles) {
+      state.allPlayers = state.allPlayers.map(player => {
+        player.role = roles.pop(); 
+        return player;
+      })
+    } 
   },
   actions: {
     enterLobby({commit}, playerName) {
-      commit("addPlayer", playerName);
+      commit("addPlayer", {
+        name: playerName, 
+        imgUrl: "https://www.ald.softbankrobotics.com/sites/aldebaran/files/images/en_savoir_plus_sur_nao_2.png"
+      });
       commit("saveCurrentPlayer", playerName);
-    }, 
-    startGame() {
-      router.push({ name: 'GameSession' });
+    },
+    startGame({state, commit}) {
+      commit("setRoles", roles)
+      router.push('game');
     }
   }
 })

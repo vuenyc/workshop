@@ -10,60 +10,69 @@
       <SinglePlayerCard v-for="(player, idx) in allPlayers" :key="idx" :player="player" />
     </div>
 
-    <button :disabled="playersLeft" @click="startGame">start game</button>
+    <button :disabled="playersLeft !== 0" @click="startGame">start game</button>
 
   </div>
 </template>
 
 <script>
-import SinglePlayerCard from './SinglePlayerCard'
-import { mapActions, mapState } from 'vuex';
+import SinglePlayerCard from "./SinglePlayerCard";
+import { mapActions, mapState } from "vuex";
+import players from "../api/players";
 
 export default {
   components: {
-    SinglePlayerCard,
+    SinglePlayerCard
   },
   // props: ['players', 'thisPlayer'],
   methods: {
-    ...mapActions(['startGame'])
+    ...mapActions(["startGame"])
   },
   computed: {
-    ...mapState(['allPlayers']),
+    ...mapState(["allPlayers"]),
     playersLeft() {
-      return 7 - this.allPlayers.length
+      return 7 - this.allPlayers.length;
+    }
+  },
+  mounted() {
+    while (this.playersLeft !== 0) {
+      console.log(this.playersLeft);
+        const { name, imgUrl } = players.pop();
+        this.$store.commit("addPlayer", { name, imgUrl });
     }
   }
-}
+};
 </script>
 
 <style scoped>
+.SinglePlayerCard {
+  flex-basis: 100%;
+  padding: 3vw;
+}
+.room-info {
+  margin-bottom: 5vh;
+}
+
+@media screen and (min-width: 800px) {
+  .waiting-players,
+  button {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  h1,
+  p {
+    flex: 1;
+    text-align: center;
+  }
   .SinglePlayerCard {
-    flex-basis: 100%;
-    padding: 3vw;
+    flex: 2.5;
   }
-  .room-info {
-    margin-bottom: 5vh;
+  button {
+    margin: 0 auto;
+    padding: 2vh 5vw;
+    text-align: center;
+    font-size: 2rem;
   }
-
-  @media screen and (min-width: 800px) {
-    .waiting-players, button {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
-    h1, p {
-      flex: 1;
-      text-align: center;
-    }
-    .SinglePlayerCard {
-      flex: 2.5;
-    }
-    button {
-      margin: 0 auto;
-      padding: 2vh 5vw;
-      text-align: center;
-      font-size: 2rem;
-    }
-  }
+}
 </style>
-

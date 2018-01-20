@@ -1,8 +1,7 @@
 <template>
 <div class="GameSession">
     <Time time="time" />
-    <VotingState  v-if="isVoted" playerId="playerId" :numVotes="numVotes" @vote="vote" players="players" />
-    <PendingState v-else players="players" />
+    <router-view />
     <button @click="timeChange">change time</button>
 </div>
 </template>
