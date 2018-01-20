@@ -6,9 +6,7 @@
       <p>{{ playersLeft }} more players needed to begin game</p>
     </div>
 
-    <div class="waiting-players">
-      <SinglePlayerCard v-for="(player, idx) in players" :key="idx" :player="player" />
-    </div>
+    <AllPlayersGrid :players="players" />
 
     <button :disabled="playersLeft" @click="ready">start game</button>
 
@@ -16,11 +14,11 @@
 </template>
 
 <script>
-import SinglePlayerCard from './SinglePlayerCard'
+import AllPlayersGrid from './AllPlayersGrid'
 
 export default {
   components: {
-    SinglePlayerCard,
+    AllPlayersGrid,
   },
   // props: ['players', 'thisPlayer'],
   data() {
@@ -71,7 +69,7 @@ export default {
   }
 
   @media screen and (min-width: 800px) {
-    .waiting-players, button {
+    button {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
@@ -79,9 +77,6 @@ export default {
     h1, p {
       flex: 1;
       text-align: center;
-    }
-    .SinglePlayerCard {
-      flex: 2.5;
     }
     button {
       margin: 0 auto;
