@@ -5,7 +5,7 @@ import PlayerEntry from './components/PlayerEntry.vue';
 import Lobby from './components/Lobby.vue';
 import PendingState from './components/PendingState.vue';
 import VotingState from './components/VotingState.vue';
-import EndGame from './components/EndGame.vue';
+import GameEnd from './components/GameEnd.vue';
 import GameSession from './components/GameSession.vue';
 
 Vue.use(VueRouter);
@@ -44,8 +44,8 @@ export const routes = [
   },
   {
     path: '/game/over',
-    name: 'EndGame',
-    component: EndGame,
+    name: 'GameEnd',
+    component: GameEnd,
     props: true
   }
 ];

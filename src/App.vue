@@ -8,7 +8,7 @@
 import PlayerEntry from './components/PlayerEntry'
 import Lobby from './components/Lobby'
 import GameSession from './components/GameSession'
-import EndGame from './components/EndGame'
+import GameEnd from './components/GameEnd'
 import SinglePlayerCard from './components/SinglePlayerCard'
 
 export default {
@@ -17,7 +17,7 @@ export default {
     Lobby,
     SinglePlayerCard,
     GameSession,
-    EndGame
+    GameEnd
   }
 };
 </script>

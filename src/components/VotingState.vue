@@ -4,7 +4,7 @@
 
     <AllPlayersGrid :players="otherPlayers" />
 
-    <button v-if="selectedPlayer" v-on:click="vote">Vote</button>
+    <button v-if="selectedPlayer" @click="vote">Vote</button>
   </div>
 </template>
 

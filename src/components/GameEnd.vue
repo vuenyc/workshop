@@ -1,11 +1,13 @@
 <template>
-  <div class="Results">
+  <div class="GameEnd">
 
     <h1>{{ winningTeam }} won!</h1>
 
     <h3>Here's who everyone was:</h3>
 
     <AllPlayersGrid :players="players" />
+
+    <button>play again!</button>
 
   </div>
 </template>
@@ -67,6 +69,9 @@ export default {
 </script>
 
 <style scoped>
+  .GameEnd {
+    text-align: center;
+  }
   h1 {
     font-size: 5rem;
     margin-top: 3vh;
@@ -74,5 +79,11 @@ export default {
   }
   h3 {
     margin-bottom: 5vh;
+  }
+  button {
+    margin: 0 auto;
+    padding: 2vh 5vw;
+    text-align: center;
+    font-size: 2rem;
   }
 </style>
