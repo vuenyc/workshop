@@ -25,7 +25,6 @@ export default {
 <style>
   /* Grid system container */
   #app {
-    max-width: 1600px;
     margin: 0 3vw;
   }
 </style>
