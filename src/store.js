@@ -34,6 +34,7 @@ export default new Vuex.Store({
           "https://www.ald.softbankrobotics.com/sites/aldebaran/files/images/en_savoir_plus_sur_nao_2.png"
       });
       commit("saveCurrentPlayer", playerName);
+      router.push("lobby")
     },
     startGame({ state, commit, getters }) {
       commit("setRoles", roles);

@@ -25,6 +25,9 @@ export default {
 </script>
 
 <style scoped>
+  .Time {
+    margin-bottom: 2vh;
+  }
   p {
     flex-basis: 100%;
     font-size: 3em;

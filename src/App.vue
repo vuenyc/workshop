@@ -8,16 +8,18 @@
 import PlayerEntry from './components/PlayerEntry'
 import Lobby from './components/Lobby'
 import GameSession from './components/GameSession'
-import EndGame from './components/EndGame'
+import GameEnd from './components/GameEnd'
 import SinglePlayerCard from './components/SinglePlayerCard'
+import AllPlayersGrid from './components/AllPlayersGrid'
 
 export default {
   components: {
     PlayerEntry,
     Lobby,
     SinglePlayerCard,
+    AllPlayersGrid,
     GameSession,
-    EndGame
+    GameEnd
   }
 };
 </script>

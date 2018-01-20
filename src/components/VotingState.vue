@@ -1,66 +1,53 @@
 <template>
   <div class="VotingState">
-    <Time :time="time"/>
-    <div class="PlayerSelection">
-      <SinglePlayerCard v-for="(player, idx) in otherPlayers" :player="player" :key="idx" />
-    </div>
-    <button v-if="!voteSubmitted" v-on:click="vote">Vote</button>
+    <Time :time="time" />
+    <AllPlayersGrid :players="otherPlayers" />
+    <button v-if="selectedPlayer" @click="vote">Vote</button>
   </div>
 </template>
 
 <script>
-import Time from './Time'
-import Instructions from './Instructions'
-import SinglePlayerCard from './SinglePlayerCard'
-import { mapActions, mapState, mapGetters } from "vuex"
+import Time from "./Time";
+import Instructions from "./Instructions";
+import SinglePlayerCard from "./SinglePlayerCard";
+import { mapActions, mapState, mapGetters } from "vuex";
+import AllPlayersGrid from "./AllPlayersGrid";
 
 export default {
   components: {
     Time,
     Instructions,
-    SinglePlayerCard,
-  },
-  props: {
-    players: {
-      type: Array,
-      required: true
-    },
-    playerId: {
-      type: String, 
-      required: true
-    },
-    numVotes: {
-      type: Number,
-      required: true
-    }
+    AllPlayersGrid
   },
   methods: {
     vote() {
-      this.$emit('vote')
+      this.$emit("vote");
     }
   },
   data() {
     return {
       voteSubmitted: false,
-    }
+      selectedPlayer: true
+    };
   },
   computed: {
     ...mapState(["allPlayers", "time"]),
-    ...mapGetters(["currentPlayer", "otherPlayers"]),
+    ...mapGetters(["currentPlayer", "otherPlayers"])
   }
-}
+};
 </script>
 
 <style scoped>
 .VotingState {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  text-align: center;
 }
-
-.PlayerSelection {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap; 
+.AllPlayersGrid {
+  margin-bottom: 3vh;
+}
+button {
+  margin: 0 auto;
+  padding: 2vh 5vw;
+  text-align: center;
+  font-size: 2rem;
 }
 </style>
