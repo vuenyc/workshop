@@ -9,8 +9,8 @@
       <h2>Enter your name:</h2>
 
       <div class="player-input">
-        <input v-model="playerName" @keyup.enter="enterGame"/>
-        <button :disabled="isDisabled" @click="enterGame">Join</button>
+        <input v-model="playerName" @keyup.enter="enterLobby(playerName)"/>
+        <button :disabled="isDisabled" @click="enterLobby">Join</button>
       </div>
     </div>
   </div>
@@ -27,7 +27,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['enterGame'])
+    ...mapActions(['enterLobby'])
   },
   computed: {
     isDisabled() {

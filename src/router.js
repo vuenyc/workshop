@@ -1,8 +1,13 @@
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+
 import PlayerEntry from './components/PlayerEntry.vue'
 import Lobby from './components/Lobby.vue'
 import PendingState from './components/PendingState.vue'
 import VotingState from './components/VotingState.vue'
 import EndGame from './components/EndGame.vue'
+
+Vue.use(VueRouter);
 
 export const routes = [
   {
@@ -32,3 +37,7 @@ export const routes = [
     props: true
   }
 ]
+
+export default new VueRouter({
+  routes
+});
