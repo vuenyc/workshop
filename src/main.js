@@ -6,11 +6,14 @@ import locale from 'element-ui/lib/locale/lang/en'
 import 'element-ui/lib/theme-chalk/index.css'
 import './assets/styles.css'
 
+import Client from './api/client';
 import router from './router';
-
 import store from './store';
 
+
+
 Vue.use(ElementUI)
+Vue.use(new Client(store, router));
 
 Vue.filter('toUpperCase', str => str.toUpperCase())
 
