@@ -22,6 +22,9 @@ export default new Vuex.Store({
         if(player.name === playerName) player.isAlive = false;
       })
     },
+    annouceInstruction(state, instruction) {
+      state.instruction = instruction;
+    },
     saveCurrentPlayer(state, playerName) {
       state.playerName = playerName;
     },
@@ -38,6 +41,9 @@ export default new Vuex.Store({
           p.killVoteCount = p.killVoteCount ? p.killVoteCount + 1 : 1;
         }
       });
+    },
+    flipTime(state) {
+      state.time = state.time === "night" ? "day" : "night";
     }
   },
   actions: {
@@ -62,7 +68,7 @@ export default new Vuex.Store({
       const werewolfs = getters.otherPlayers
         .filter(p => p.role === "Werewolf")
       
-      const victim = await WerewolfsVoteAction(werewolfs);
+      const victim = await dispatch('WerewolfsVoteAction', werewolfs);
 
       const doctor = state.allPlayers.filter(
         p => p.role === "Villager Doctor"
@@ -71,8 +77,9 @@ export default new Vuex.Store({
       if (doctor) {
         if(doctor.name === state.playerName) return;
         else {
-          const patient = await DoctorVoteAction(getters.otherPlayers);
+          const patient = await dispatch('DoctorVoteAction', getters.otherPlayers);
           if(patient.name !== victim.name) {
+            commit("instruction", `Player ${victim.name} has been murdered.`)
             commit("killPlayer", victim.name);
           }
           //seers goes here
@@ -93,20 +100,26 @@ export default new Vuex.Store({
       }, {werewolf: 0, villagers: 0});
       if(playerLeft.werewolf == 0) {
         //game end;
+        
       } else if(playerLeft.villagers && playerLeft.werewolf) {
         // game end 
       } else {
-        // goes on
+        // goes on;
+        router.push("game/wait")
+        commit("flipTime");
       }
-    }
-    async WerewolfsVoteAction(werewolf) {
-      const victims = await new Promise.all(werewolf.map(wolf => WerewolfVote(wolf)));
+    },
+    async WerewolfsVoteAction({state, getters}, werewolf) {
+      const villagers = getters.otherPlayers.filter(p => p.role !== "Werewolf");
+      const promises = werewolf.map(wolf => WerewolfVote(villagers));
+      const victims = await Promise.all(promises);
       const victimsNameCount = victims.reduce((acc, cur) => {
-        if(cur[cur.name]) {
-          cur[cur.name]++;
+        if(acc[cur.name]) {
+          acc[cur.name]++;
         } else {
-          cur[cur.name] = 1; 
+          acc[cur.name] = 1; 
         }
+        return acc;
       }, {});
       const result = Object.keys(victimsNameCount).reduce((acc, cur) => {
         if(victimsNameCount[cur] > acc.value) {
@@ -117,7 +130,7 @@ export default new Vuex.Store({
       }, {name: null, value: null});
       return result;
     },
-    async DoctorVoteAction(players) {
+    async DoctorVoteAction(context, players) {
       return await DoctorVote(players) 
     },
     dayVote({ state, commit, getters }, player) {

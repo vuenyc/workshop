@@ -5,8 +5,8 @@ export function WerewolfVote(players) {
   const index = Math.round(Math.random() * (villager.length - 1));
   const result =
     villager.filter(p => p.killVoteCount > 0)[0] || villager[index];
-  
-    return new Promise(resolve => {
+
+  return new Promise(resolve => {
     setTimeout(() => resolve(result), 1000);
   });
 }
