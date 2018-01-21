@@ -1,12 +1,17 @@
 <template>
   <div class="Instructions">
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit maiores possimus quaerat, dolorum esse laboriosam aspernatur? Repellendus qui velit maxime et reiciendis consectetur, laborum, nobis saepe id deleniti autem modi?</p>
+    <p>{{instruction}}</p>
   </div>
 </template>
 
 <script>
 export default {
-
+  props: {
+    instruction: {
+      type: String, 
+      required: true
+    }
+  }
 }
 </script>
 

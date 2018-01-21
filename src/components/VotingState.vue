@@ -2,6 +2,7 @@
   <div class="VotingState">
     <Time :time="time" />
     <AllPlayersGrid :players="otherPlayers" @select="select"/>
+    <Instructions :instruction="instruction"/>
     <button v-if="selectedPlayer" @click="nightVote(selectedPlayer)">Vote</button>
   </div>
 </template>
@@ -32,7 +33,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["allPlayers", "time"]),
+    ...mapState(["allPlayers", "time", "instruction"]),
     ...mapGetters(["currentPlayer", "otherPlayers"])
   }
 };

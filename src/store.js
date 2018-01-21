@@ -79,8 +79,10 @@ export default new Vuex.Store({
         else {
           const patient = await dispatch('DoctorVoteAction', getters.otherPlayers);
           if(patient.name !== victim.name) {
-            commit("instruction", `Player ${victim.name} has been murdered.`)
+            commit("annouceInstruction", `Player ${victim.name} has been murdered.`)
             commit("killPlayer", victim.name);
+          } else {
+            commit("annouceInstruction", `Player ${victim.name} was saved by Doctor.`)
           }
           //seers goes here
 
