@@ -19,11 +19,6 @@ export default {
     Instructions,
     AllPlayersGrid
   },
-  Data() {
-    return {
-      selectedPlayer: null
-    }
-  },
   methods: {
     select(player) {
       this.selectedPlayer = player;
@@ -33,11 +28,8 @@ export default {
   data() {
     return {
       voteSubmitted: false,
-      selectedPlayer: true
+      selectedPlayer: null
     };
-  },
-  method: {
-    ...mapActions(["vote"])
   },
   computed: {
     ...mapState(["allPlayers", "time"]),

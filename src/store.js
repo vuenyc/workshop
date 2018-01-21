@@ -3,14 +3,15 @@ import Vuex from "vuex";
 import router from "./router";
 
 import roles from "./api/role";
-
+import { WerewolfVote, DoctorVote, VillagersVote } from "./api/computerPlayer";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     playerName: "ENTER YOUR NAME HERE",
     allPlayers: [],
-    time: "night"
+    time: "night",
+    instruction: ""
   },
   mutations: {
     addPlayer(state, player) {
@@ -22,14 +23,15 @@ export default new Vuex.Store({
     setRoles(state, roles) {
       state.allPlayers = state.allPlayers.map(player => {
         player.role = roles.pop();
+        player.isAlive = true;
         return player;
       });
     },
     voteToKill(state, player) {
       state.allPlayers.forEach(p => {
         if (p.name === player.name) {
-          p.killVoteCount = p.killVoteCount ? p.killVoteCount + 1  : 1 ;
-        } 
+          p.killVoteCount = p.killVoteCount ? p.killVoteCount + 1 : 1;
+        }
       });
     }
   },
@@ -49,8 +51,42 @@ export default new Vuex.Store({
         `game/${getters.currentPlayer.role === "Werewolf" ? "vote" : "wait"}`
       );
     },
-    vote({ commit }, player) {
+    async nightVote({ state, commit, getters }, player) {
       commit("voteToKill", player);
+      // computer vote
+      getters.otherPlayers
+        .filter(p => p.role === "Werewolf" && p.isAlive)
+        .forEach(p => {
+          const victim = await WerewolfVote(getters.otherPlayers)
+          commit("voteToKill", victim);
+        });
+
+      const doctor = state.allPlayers.filter(
+        p => p.role === "Villager Doctor"
+      )[0];
+      if (doctor.isAlive) {
+        if(doctor.name === state.playerName) return;
+        else {
+          DoctorVote(getters.otherPlayers).then(p => 
+            commit("voteToSave", p)
+          )
+        }
+      }
+
+      const victim = state.allPlayers.reduce((acc, cur) =>  {
+        if(acc == null) {
+          acc = cur;
+        } else if(acc.killVoteCount < cur.killVoteCount) {
+          return cur
+        }
+        return acc;
+      }, null);
+
+
+
+    },
+    dayVote({ state, commit, getters }, player) {
+
     }
   },
   getters: {
